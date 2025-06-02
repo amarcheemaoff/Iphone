@@ -68,6 +68,7 @@
             letter-spacing: -0.5px;
             color: var(--graphite);
             text-decoration: none;
+            z-index: 110;
         }
 
         .nav-links {
@@ -119,6 +120,17 @@
             color: var(--accent-blue);
         }
 
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 110;
+            color: var(--graphite);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -135,6 +147,7 @@
         .hero-content {
             max-width: 800px;
             z-index: 2;
+            padding: 0 1rem;
         }
 
         .hero h1 {
@@ -170,6 +183,7 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 1s ease 0.4s forwards;
+            padding: 0 1rem;
         }
 
         .hero-img img {
@@ -214,6 +228,7 @@
             font-weight: 700;
             margin-bottom: 5rem;
             letter-spacing: -0.5px;
+            padding: 0 1rem;
         }
 
         .features-grid {
@@ -336,6 +351,8 @@
             display: flex;
             justify-content: center;
             margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .toggle-button {
@@ -348,12 +365,11 @@
         }
 
         .toggle-button:first-child {
-            border-radius: 30px 0 0 30px;
-            border-right: none;
+            border-radius: 30px;
         }
 
         .toggle-button:last-child {
-            border-radius: 0 30px 30px 0;
+            border-radius: 30px;
         }
 
         .toggle-button.active {
@@ -362,9 +378,16 @@
             border-color: var(--graphite);
         }
 
+        .comparison-table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px;
         }
 
         .comparison-table th {
@@ -410,6 +433,7 @@
             margin-bottom: 1.5rem;
             line-height: 1.4;
             position: relative;
+            padding: 0 1rem;
         }
 
         .quote::before,
@@ -423,12 +447,12 @@
 
         .quote::before {
             top: -1.5rem;
-            left: -2rem;
+            left: -0.5rem;
         }
 
         .quote::after {
             bottom: -2.5rem;
-            right: -2rem;
+            right: -0.5rem;
         }
 
         .source {
@@ -539,6 +563,58 @@
             color: var(--neon-blue);
         }
 
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu-links a {
+            font-size: 1.5rem;
+            color: var(--graphite);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--graphite);
+        }
+
         /* Animations */
         @keyframes fadeUp {
             to {
@@ -567,6 +643,10 @@
 
             .features-grid {
                 gap: 2rem;
+            }
+            
+            .hamburger {
+                display: block;
             }
         }
 
@@ -603,6 +683,75 @@
                 margin-top: 1rem;
                 flex-wrap: wrap;
             }
+            
+            .toggle-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem;
+            }
+            
+            .quote::before {
+                left: 0;
+            }
+            
+            .quote::after {
+                right: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding-top: 6rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card {
+                padding: 1.8rem 1.5rem;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                margin-bottom: 3rem;
+            }
+            
+            .mobile-menu-links a {
+                font-size: 1.2rem;
+            }
+            
+            .toggle-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .toggle-button {
+                width: 100%;
+                max-width: 280px;
+            }
         }
 
         /* Scroll Animations */
@@ -616,9 +765,44 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Disclaimer */
+        .disclaimer {
+            font-size: 0.85rem; 
+            color: #444; 
+            background-color: #fff3cd;  
+            border: 1px solid #ffeeba;  
+            padding: 0.5rem 1rem; 
+            margin: 1rem auto; 
+            max-width: 600px;
+            text-align: center; 
+            font-style: italic;
+            border-radius: 4px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .disclaimer {
+                font-size: 0.75rem;
+                padding: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu-links">
+            <a href="#features" onclick="closeMobileMenu()">Features</a>
+            <a href="#video" onclick="closeMobileMenu()">Design</a>
+            <a href="#comparison" onclick="closeMobileMenu()">Tech Specs</a>
+            <a href="#reviews" onclick="closeMobileMenu()">Reviews</a>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -634,6 +818,9 @@
                     <i class="fas fa-search"></i>
                     <i class="fas fa-shopping-bag"></i>
                 </div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -646,7 +833,7 @@
             <a href="https://www.apple.com/shop/buy-iphone" class="cta-button" target="_blank" rel="noopener">Buy Now</a>
         </div>
         <div class="hero-img">
-            <img src="images (9).jpg" alt="iPhone 16">
+            <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="iPhone 16">
         </div>
     </section>
 
@@ -700,52 +887,55 @@
             </div>
         </div>
     </section>
+
     <!-- Comparison Section -->
     <section class="comparison" id="comparison">
         <div class="container">
             <h2 class="section-title">Compare Generations.</h2>
-            <div class="comparison-container"></div>
+            <div class="comparison-container">
                 <div class="toggle-container">
                     <button class="toggle-button active">iPhone 15</button>
                     <button class="toggle-button">iPhone 16</button>
                 </div>
-                <table class="comparison-table">
-                    <tr>
-                        <th>Feature</th>
-                        <th>iPhone 15</th>
-                        <th>iPhone 16</th>
-                    </tr>
-                    <tr>
-                        <td>Chip</td>
-                        <td>A17 Bionic</td>
-                        <td class="highlight">A18 Bionic</td>
-                    </tr>
-                    <tr>
-                        <td>Neural Engine</td>
-                        <td>16-core</td>
-                        <td class="highlight">32-core</td>
-                    </tr>
-                    <tr>
-                        <td>Battery Life</td>
-                        <td>Up to 28 hours</td>
-                        <td class="highlight">Up to 48 hours</td>
-                    </tr>
-                    <tr>
-                        <td>Display</td>
-                        <td>Super Retina XDR</td>
-                        <td class="highlight">ProMotion XDR</td>
-                    </tr>
-                    <tr>
-                        <td>Connectivity</td>
-                        <td>5G</td>
-                        <td class="highlight">5G + Satellite</td>
-                    </tr>
-                    <tr>
-                        <td>Materials</td>
-                        <td>Aluminum</td>
-                        <td class="highlight">Titanium</td>
-                    </tr>
-                </table>
+                <div class="comparison-table-container">
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Feature</th>
+                            <th>iPhone 15</th>
+                            <th>iPhone 16</th>
+                        </tr>
+                        <tr>
+                            <td>Chip</td>
+                            <td>A17 Bionic</td>
+                            <td class="highlight">A18 Bionic</td>
+                        </tr>
+                        <tr>
+                            <td>Neural Engine</td>
+                            <td>16-core</td>
+                            <td class="highlight">32-core</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Life</td>
+                            <td>Up to 28 hours</td>
+                            <td class="highlight">Up to 48 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Display</td>
+                            <td>Super Retina XDR</td>
+                            <td class="highlight">ProMotion XDR</td>
+                        </tr>
+                        <tr>
+                            <td>Connectivity</td>
+                            <td>5G</td>
+                            <td class="highlight">5G + Satellite</td>
+                        </tr>
+                        <tr>
+                            <td>Materials</td>
+                            <td>Aluminum</td>
+                            <td class="highlight">Titanium</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
@@ -767,81 +957,68 @@
         </div>
     </section>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h4>Explore</h4>
-                <ul class="footer-links">
-                    <li><a href="https://www.apple.com/iphone-16/specs/" target="_blank" rel="noopener noreferrer">Tech Specs</a></li>
-                    <li><a href="https://www.apple.com/shop/buy-iphone/iphone-16" target="_blank" rel="noopener noreferrer">Pricing</a></li>
-                    <li><a href="https://support.apple.com/iphone" target="_blank" rel="noopener noreferrer">Support</a></li>
-                    <li><a href="https://www.apple.com/shop/iphone/accessories" target="_blank" rel="noopener noreferrer">Accessories</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <div class="social-icons">
-                    <a href="https://x.com/theapplehub" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/apple/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/apple/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/apple" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.apple.com/iphone-16/specs/" target="_blank" rel="noopener noreferrer">Tech Specs</a></li>
+                        <li><a href="https://www.apple.com/shop/buy-iphone/iphone-16" target="_blank" rel="noopener noreferrer">Pricing</a></li>
+                        <li><a href="https://support.apple.com/iphone" target="_blank" rel="noopener noreferrer">Support</a></li>
+                        <li><a href="https://www.apple.com/shop/iphone/accessories" target="_blank" rel="noopener noreferrer">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://x.com/theapplehub" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/apple/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/apple/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/apple" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                        <li><a href="https://www.apple.com/legal/internet-services/terms/site.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+                        <li><a href="https://www.apple.com/legal/sales-support/sales-policies/retail_us.html" target="_blank" rel="noopener noreferrer">Sales Policy</a></li>
+                        <li><a href="https://www.apple.com/legal/" target="_blank" rel="noopener noreferrer">Legal Info</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-column">
-                <h4>Legal</h4>
-                <ul class="footer-links">
-                    <li><a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
-                    <li><a href="https://www.apple.com/legal/internet-services/terms/site.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
-                    <li><a href="https://www.apple.com/legal/sales-support/sales-policies/retail_us.html" target="_blank" rel="noopener noreferrer">Sales Policy</a></li>
-                    <li><a href="https://www.apple.com/legal/" target="_blank" rel="noopener noreferrer">Legal Info</a></li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- Disclaimer -->
-        <div style="
-            font-size: 0.85rem; 
-            color: #444; 
-            background-color: #fff3cd;  
-            border: 1px solid #ffeeba;  
-            padding: 0.5rem 1rem; 
-            margin: 1rem auto; 
-            max-width: 600px;
-            text-align: center; 
-            font-style: italic;
-            border-radius: 4px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        ">
-            <strong>Disclaimer:</strong> This website is an unofficial demo created solely for educational and informational purposes. It is not affiliated with, endorsed by, or sponsored by any trademark holders, including Apple Inc. All product names, logos, and brands remain the property of their respective owners. This site complies with Pakistan’s Electronic Transactions Ordinance and Copyright Act, ensuring lawful use of content.
-        </div>
-
-        <div class="footer-bottom">
-            <div class="legal-links" style="text-align:center; margin-bottom: 0.5rem;">
-                <a href="#">Copyright © 2025 Amar Cheema. All rights reserved.</a>
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This website is an unofficial demo created solely for educational and informational purposes. It is not affiliated with, endorsed by, or sponsored by any trademark holders, including Apple Inc. All product names, logos, and brands remain the property of their respective owners. This site complies with Pakistan’s Electronic Transactions Ordinance and Copyright Act, ensuring lawful use of content.
             </div>
-            <div class="credit" style="
-                text-align: center;
-                color: var(--medium-gray);
-                font-weight: 600;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 0.9rem;
-                transition: var(--transition);
-            ">
-                Powered by <a href="https://amarcheema.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" style="
-                    color: var(--accent-blue);
-                    text-decoration: none;
-                    font-weight: 700;
+
+            <div class="footer-bottom">
+                <div class="legal-links" style="text-align:center; margin-bottom: 0.5rem;">
+                    <a href="#">Copyright © 2025 Amar Cheema. All rights reserved.</a>
+                </div>
+                <div class="credit" style="
+                    text-align: center;
+                    color: var(--medium-gray);
+                    font-weight: 600;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-size: 0.9rem;
                     transition: var(--transition);
-                " onmouseover="this.style.color='var(--neon-blue)'" onmouseout="this.style.color='var(--accent-blue)'">
-                    AMAR
-                </a>
+                ">
+                    Powered by <a href="https://amarcheema.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" style="
+                        color: var(--accent-blue);
+                        text-decoration: none;
+                        font-weight: 700;
+                        transition: var(--transition);
+                    " onmouseover="this.style.color='var(--neon-blue)'" onmouseout="this.style.color='var(--accent-blue)'">
+                        AMAR
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-
+    </footer>
 
     <script>
         // Header scroll effect
@@ -894,6 +1071,34 @@
                     });
                 }
             });
+        });
+        
+        // Mobile menu functionality
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburger = document.getElementById('hamburger');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     </script>
 </body>
